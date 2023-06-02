@@ -1,6 +1,8 @@
 import React, { createContext, useContext,useState, useEffect } from 'react';
 import axios from "axios";
 export const UserContext = createContext();
+const uriLockal = {uri} + ""
+const uriRemote = "https://lifetracker-backend-m2cu.onrender.com/"
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({});
@@ -10,8 +12,9 @@ export const UserProvider = ({ children }) => {
     const [authCred, setAuthCred] = useState({'email':'', 'password':""})
     const [regCred, setRegCred] = useState({'email':'', 'password':"", 'firstName':"", 'lastName':"", 'location':"" })
     const [error, setError] = useState();
-    const [isFetch, setIsFetch] = useState(false)
-
+    const [isFetch, setIsFetch] = useState(false);
+    const [uri, setUri] = useState(uriRemote)
+    
 
    
 
@@ -28,7 +31,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!authCred) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/auth/login",
+        const res = await axios.post({uri} + "auth/login",
           authCred
         );
         if (res) {
@@ -50,7 +53,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!user) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/exercise/list",
+        const res = await axios.post({uri} + "exercise/list",
           user
         );
         if (res) {
@@ -70,7 +73,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!user) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/sleep/list",
+        const res = await axios.post({uri} + "sleep/list",
           user
         );
         if (res) {
@@ -90,7 +93,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!user) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/nutrition/list",
+        const res = await axios.post({uri} + "nutrition/list",
           user
         );
         if (res) {
@@ -112,7 +115,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!regCred) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/auth/register",
+        const res = await axios.post({uri} + "auth/register",
         regCred
         );
         console.log(" userContext")
@@ -135,7 +138,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!regCred) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post("http://localhost:3005/exercise/add",
+        const res = await axios.post({uri} + "exercise/add",
         regCred
         );
         console.log(" userContext")
