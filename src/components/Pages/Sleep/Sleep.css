@@ -1,0 +1,19 @@
+.SleepPage {
+  background: #f7fafc;
+}
+.SleepPage .nutrition-feed {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+}
+.white {
+  color: white;
+}
+.SleepPage .button {
+  display: flex;
+}
+.SleepPage .button button {
+  flex: 1;
+}

@@ -1,0 +1,26 @@
+/* Style the top navigation bar */
+.NavbarLink {
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    font-size: 23px;
+    color: white;
+  }
+  
+  /* Style the navbar links */
+  .NavbarLink a {
+    color: #f2f2f2;
+    text-decoration: none;
+  }
+  
+  .NavbarLink a:hover {
+    color:aquamarine,;
+    text-decoration: underline;
+  }
+  /* Change color on hover */
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
