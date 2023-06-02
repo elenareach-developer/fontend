@@ -76,14 +76,6 @@ export default function RegistrationFrom(props) {
           />
         </div>
         <div className="form-control">
-          <label>Location</label>
-          <input
-            type="text"
-            name="location"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-control">
           <label>Email</label>
           <input
             type="text"

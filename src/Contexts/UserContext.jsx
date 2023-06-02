@@ -1,7 +1,7 @@
 import React, { createContext, useContext,useState, useEffect } from 'react';
 import axios from "axios";
 export const UserContext = createContext();
-const uriLockal = {uri} + ""
+const uriLockal = "https://lockalhost:3005/"
 const uriRemote = "https://lifetracker-backend-m2cu.onrender.com/"
 
 export const UserProvider = ({ children }) => {
@@ -10,10 +10,10 @@ export const UserProvider = ({ children }) => {
     const [nutrition, setNutrition] = useState([]);
     const [sleep, setSleep] = useState([]);
     const [authCred, setAuthCred] = useState({'email':'', 'password':""})
-    const [regCred, setRegCred] = useState({'email':'', 'password':"", 'firstName':"", 'lastName':"", 'location':"" })
+    const [regCred, setRegCred] = useState({'email':'', 'password':"", 'firstName':"", 'lastName':"" })
     const [error, setError] = useState();
     const [isFetch, setIsFetch] = useState(false);
-    const [uri, setUri] = useState(uriRemote)
+    const uri = uriRemote;
     
 
    
@@ -30,14 +30,18 @@ export const UserProvider = ({ children }) => {
     const fetchUser= async () => {
       setIsFetch(true);  
       if(!authCred) throw new Error("pls add email and pass")
+      console.log("authCred")
+      console.log(authCred)
+      console.log(uri + "auth/login")
+
       try {
-        const res = await axios.post({uri} + "auth/login",
+        const res = await axios.post(uri + "auth/login",
           authCred
         );
         if (res) {
          await setUser(res.data.user);
         } else {
-          setError("Error fetching products.");
+          setError("Error fetching user.");
         }
       } catch (err) {
         console.log(err);
@@ -53,7 +57,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!user) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post({uri} + "exercise/list",
+        const res = await axios.post(uri + "exercise/list",
           user
         );
         if (res) {
@@ -73,7 +77,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!user) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post({uri} + "sleep/list",
+        const res = await axios.post(uri + "sleep/list",
           user
         );
         if (res) {
@@ -114,8 +118,10 @@ export const UserProvider = ({ children }) => {
     const createUser = async () =>{
       setIsFetch(true);  
       if(!regCred) throw new Error("pls add email and pass")
+      console.log(" register")
+        console.log()
       try {
-        const res = await axios.post({uri} + "auth/register",
+        const res = await axios.post(uri + "auth/register",
         regCred
         );
         console.log(" userContext")
@@ -138,7 +144,7 @@ export const UserProvider = ({ children }) => {
       setIsFetch(true);  
       if(!regCred) throw new Error("pls add email and pass")
       try {
-        const res = await axios.post({uri} + "exercise/add",
+        const res = await axios.post(uri + "exercise/add",
         regCred
         );
         console.log(" userContext")
